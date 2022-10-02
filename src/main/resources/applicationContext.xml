@@ -7,31 +7,7 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <context:property-placeholder location="classpath:musicPlayer.properties"/>
+<context:component-scan base-package="entity"/>
 
-    <bean id="musicBean"
-          class="entity.ClassicalMusic"
-    init-method="initMethod"
-          scope="prototype"
-    destroy-method="destroyMethod"
-    factory-method="getClassicalMusic">
-    </bean>
-
-    <!--    create bean вручную-->
-    <bean id="musicPlayer"
-          class="entity.MusicPlayer"
-          scope="prototype">
-        <property name="music" ref="musicBean"/>
-
-
-        <!--        внедряем в контекст вручную-->
-        <!--        <property name="name" value="Some name"/>-->
-        <!--        <property name="volume" value="50"/>-->
-
-
-        <!--        внедряем ссылку на файл musicPlayer-->
-        <property name="name" value="${musicPlayer.name}"/>
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
 
 </beans>

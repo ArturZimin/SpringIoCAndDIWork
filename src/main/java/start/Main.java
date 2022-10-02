@@ -1,7 +1,6 @@
 package start;
-import entity.ClassicalMusic;
+import entity.*;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import entity.MusicPlayer;
 
 public class Main {
 
@@ -10,9 +9,30 @@ public class Main {
                 "applicationContext.xml"
         );
 
+/**
+ * теперь внедрили зависимость внутри других зависимостей
+ * computer->musicPlayer->classicalMusicAndRockMusic
+ * внедрение зависимостей идет в правильном порядкеЛ
+ */
+        Computer computer=context.getBean("computer",Computer.class);
+        System.out.println(computer);
 
-        ClassicalMusic classicalMusic=context.getBean("musicBean",ClassicalMusic.class);
-        System.out.println(classicalMusic.getSong());
+//MusicPlayer musicPlayer=context.getBean("musicPlayer",MusicPlayer.class);
+//musicPlayer.playMusic();
+
+      // ClassicalMusic classicalMusic=context.getBean("classicalMusic",ClassicalMusic.class);
+
+//
+//        MusicPlayer musicPlayer=new MusicPlayer(classicalMusic);
+//        musicPlayer.playMusic();
+//
+//        RockMusic rockMusic=context.getBean("rockMusic", RockMusic.class);
+//        MusicPlayer musicPlayer1=new MusicPlayer(rockMusic);
+//        musicPlayer1.playMusic();
+
+
+
+        context.close();
 
 
 
